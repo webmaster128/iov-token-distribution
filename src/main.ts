@@ -24,9 +24,9 @@ interface Genesis {
   }
 }
 
-async function getFile(): Promise<Genesis> {
+async function getFile(path: string): Promise<Genesis> {
   return new Promise((resolve, reject) => {
-    fs.readFile('genesis.json', function (err: any, data: any) {
+    fs.readFile(path, function (err: any, data: any) {
       if (err) reject(err);
       else resolve(JSON.parse(data.toString()));
     });
@@ -45,8 +45,8 @@ function parseIov(input: Amount): Decimal {
   }
 }
 
-async function main(): Promise<void> {
-  const doc = await getFile();
+async function main(args: readonly string[]): Promise<void> {
+  const doc = await getFile(args[0]);
 
   const wallets = doc.app_state.cash;
   console.log("Wallets:", wallets.length);
@@ -79,7 +79,7 @@ async function main(): Promise<void> {
   }
 }
 
-main().then(
+main(process.argv.slice(2)).then(
   () => process.exit(0),
   error => {
     console.error(error);
