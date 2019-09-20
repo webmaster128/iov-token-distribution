@@ -1,0 +1,14 @@
+{
+  "name": "iov-token-distribution",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^12.7.5",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.3"
+  },
+  "dependencies": {
+    "@iov/encoding": "^0.17.7"
+  }
+}
