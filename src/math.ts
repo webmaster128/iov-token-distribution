@@ -14,5 +14,5 @@ export function numericApproximation(decimal: Decimal) {
 
 export function relative(nominator: Decimal, denominator: Decimal): string {
   const rel = numericApproximation(nominator) / numericApproximation(denominator);
-  return `${(rel*100).toFixed(2)} %`
+  return `${(rel*100).toFixed(3)}%`
 }

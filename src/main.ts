@@ -10,6 +10,7 @@ interface Wallet {
 }
 
 interface Escrow {
+  readonly "//name": string,
   readonly arbiter: string,
   readonly destination: string,
   readonly source: string,
@@ -70,12 +71,21 @@ async function main(args: readonly string[]): Promise<void> {
   }, Decimal.fromAtomics("0", 9));
   console.log("Total supply", total.toString());
 
+
   for (const wallet of wallets) {
     if (wallet.coins.length !== 1) throw new Error("Unexpected number of coins in wallet");
     // console.log(wallet.coins[0]);
     const iovCoins = parseIov(wallet.coins[0]);
     const part = relative(iovCoins, total);
-    console.log(wallet.address, iovCoins.toString(), part);
+    console.log("wallet", wallet.address, iovCoins.toString(), part);
+  }
+
+  for (const escrow of escrows) {
+    if (escrow.amount.length !== 1) throw new Error("Unexpected number of coins in wallet");
+    // console.log(wallet.coins[0]);
+    const iovCoins = parseIov(escrow.amount[0]);
+    const part = relative(iovCoins, total);
+    console.log("escrow", escrow.source, iovCoins.toString(), part);
   }
 }
 
