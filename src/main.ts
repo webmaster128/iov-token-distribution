@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
-import { Decimal } from "@iov/encoding";
 import fs from "fs";
 
-import { add, relative } from "./math";
+import { Decimal } from "./decimal";
+import { relative } from "./math";
 
 type Amount = string | { whole?: number; fractional?: number; ticker: string };
 
@@ -69,7 +69,7 @@ async function main(args: readonly string[]): Promise<void> {
   const allCoins = [...coinsFromWallets, ...coinsFromEscrows];
 
   const total = allCoins.reduce((current, added) => {
-    return add(current, added);
+    return current.plus(added);
   }, Decimal.fromAtomics("0", 9));
   console.log("Total supply", total.toString());
 
