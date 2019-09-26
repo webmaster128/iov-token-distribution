@@ -3,7 +3,7 @@ import { Escrow, parseIov, Wallet } from "./format";
 
 export function relative(nominator: Decimal, denominator: Decimal): string {
   const rel = nominator.toFloatApproximation() / denominator.toFloatApproximation();
-  return `${rel.toFixed(8)}`;
+  return rel.toFixed(8);
 }
 
 function isWallet(data: Escrow | Wallet): data is Wallet {

@@ -5,6 +5,7 @@ export type Amount =
   | { readonly whole?: number; readonly fractional?: number; readonly ticker: string };
 
 export interface Wallet {
+  readonly "//id"?: string;
   readonly "//name"?: string;
   readonly address: string;
   readonly coins: readonly Amount[];
