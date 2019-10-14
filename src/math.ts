@@ -6,6 +6,11 @@ export function relative(nominator: Decimal, denominator: Decimal): string {
   return rel.toFixed(8);
 }
 
+export function percentage(nominator: Decimal, denominator: Decimal): string {
+  const rel = (nominator.toFloatApproximation() / denominator.toFloatApproximation()) * 100;
+  return rel.toFixed(1) + "%";
+}
+
 function isWallet(data: Escrow | Wallet): data is Wallet {
   return typeof (data as Wallet).coins !== "undefined";
 }

@@ -2,7 +2,7 @@ import fs from "fs";
 
 import { Decimal } from "./decimal";
 import { Escrow, Genesis, parseIov, Wallet } from "./format";
-import { relative, supplyInContainerss } from "./math";
+import { percentage, relative, supplyInContainerss } from "./math";
 import { printlnStderr, printlnStdout } from "./print";
 
 async function getFile(path: string): Promise<Genesis> {
@@ -55,14 +55,36 @@ async function main(args: readonly string[]): Promise<void> {
   };
 
   printlnStderr(``);
-  printlnStderr(`Supply in regular wallets: ${supply.inRegularWallets.toString()}`);
-  printlnStderr(`Supply in regular escrows: ${supply.inRegularEscrows.toString()}`);
-  printlnStderr(`Subtotal supply: ${supply.subtotal.toString()}`);
+  printlnStderr(
+    `Supply in regular wallets: ${supply.inRegularWallets.toString()} (${percentage(
+      supply.inRegularWallets,
+      supply.subtotal,
+    )})`,
+  );
+  printlnStderr(
+    `Supply in regular escrows: ${supply.inRegularEscrows.toString()} (${percentage(
+      supply.inRegularEscrows,
+      supply.subtotal,
+    )})`,
+  );
+  printlnStderr(
+    `Subtotal supply: ${supply.subtotal.toString()} (${percentage(supply.subtotal, supply.subtotal)})`,
+  );
 
   printlnStderr(``);
-  printlnStderr(`Supply in extra wallets: ${supply.inExtraWallets.toString()}`);
-  printlnStderr(`Supply in extra escrows: ${supply.inExtraEscrows.toString()}`);
-  printlnStderr(`Total supply: ${supply.total.toString()}`);
+  printlnStderr(
+    `Supply in extra wallets: ${supply.inExtraWallets.toString()} (${percentage(
+      supply.inExtraWallets,
+      supply.subtotal,
+    )})`,
+  );
+  printlnStderr(
+    `Supply in extra escrows: ${supply.inExtraEscrows.toString()} (${percentage(
+      supply.inExtraEscrows,
+      supply.subtotal,
+    )})`,
+  );
+  printlnStderr(`Total supply: ${supply.total.toString()} (${percentage(supply.total, supply.subtotal)})`);
 
   for (const wallet of wallets) {
     if (wallet.coins.length !== 1) throw new Error("Unexpected number of coins in wallet");
