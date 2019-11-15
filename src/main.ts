@@ -16,12 +16,13 @@ async function getFile(path: string): Promise<Genesis> {
 
 function printCsvRow(
   type: string,
+  section: "regular" | "extra",
   beneficiary: string,
   coins: Decimal,
   relativeToSubtotal: string,
   notes: string,
 ): void {
-  printlnStdout(`${type};${beneficiary};${coins.toString()};${relativeToSubtotal};"${notes}";`);
+  printlnStdout(`${type};${section};${beneficiary};${coins.toString()};${relativeToSubtotal};"${notes}";`);
 }
 
 function isExtraWallet(wallet: Wallet): boolean {
@@ -92,7 +93,8 @@ async function main(args: readonly string[]): Promise<void> {
     const iovCoins = parseIov(wallet.coins[0]);
     const part = relative(iovCoins, supply.subtotal);
     const notes = `ID: ${wallet["//id"]} Name: ${wallet["//name"]}`;
-    printCsvRow("wallet", wallet.address, iovCoins, part, notes);
+    const section = isExtraWallet(wallet) ? "extra" : "regular";
+    printCsvRow("wallet", section, wallet.address, iovCoins, part, notes);
   }
 
   escrows.forEach((escrow, index) => {
@@ -104,7 +106,8 @@ async function main(args: readonly string[]): Promise<void> {
     const part = relative(iovCoins, supply.subtotal);
     const notes = `#${escrowId} ${timeout} ${source} -> ${destination}`;
     const beneficiary = destination === "0000000000000000000000000000000000000000" ? source : destination;
-    printCsvRow("escrow", beneficiary, iovCoins, part, notes);
+    const section = isExtraEscrow(escrow) ? "extra" : "regular";
+    printCsvRow("escrow", section, beneficiary, iovCoins, part, notes);
   });
 }
 
