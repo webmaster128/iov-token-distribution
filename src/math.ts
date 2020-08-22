@@ -1,4 +1,5 @@
-import { Decimal } from "./decimal";
+import { Decimal } from "@cosmjs/math";
+
 import { Escrow, parseIov, Wallet } from "./format";
 
 export function relative(nominator: Decimal, denominator: Decimal): string {

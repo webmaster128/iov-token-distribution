@@ -18,12 +18,12 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@types/bn.js@^4.11.5":
-  version "4.11.5"
-  resolved "https://registry.yarnpkg.com/@types/bn.js/-/bn.js-4.11.5.tgz#40e36197433f78f807524ec623afcf0169ac81dc"
-  integrity sha512-AEAZcIZga0JgVMHNtl1CprA/hXX7/wPt79AgR4XqaDt7jyj3QWYw6LPoOiznPtugDmlubUnAahMs2PFxGcQrng==
+"@cosmjs/math@^0.22.2":
+  version "0.22.2"
+  resolved "https://registry.yarnpkg.com/@cosmjs/math/-/math-0.22.2.tgz#effba6fe9f7b6fbf880ceab1cf9eec44375388a5"
+  integrity sha512-8qy7u98sGTuk/uwf+YcksRPkLeIjXerjw7lyyWw1DNbjii4LX4YR+DX+MRc2jZQ/ASCAh0x8Ve4PISGfMnubRg==
   dependencies:
-    "@types/node" "*"
+    bn.js "^4.11.8"
 
 "@types/eslint-visitor-keys@^1.0.0":
   version "1.0.0"
@@ -35,7 +35,7 @@
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.3.tgz#bdfd69d61e464dcc81b25159c270d75a73c1a636"
   integrity sha512-Il2DtDVRGDcqjDtE+rF8iqg1CArehSK84HZJCT7AMITlyXRBpuPhqGLDQMowraqqu1coEaimg4ZOqggt6L6L+A==
 
-"@types/node@*", "@types/node@^12.7.5":
+"@types/node@^12.7.5":
   version "12.7.5"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.5.tgz#e19436e7f8e9b4601005d73673b6dc4784ffcc2f"
   integrity sha512-9fq4jZVhPNW8r+UYKnxF1e2HkDWOWKM5bC2/7c9wPV835I0aOrVbS/Hw/pWPk2uKrNXQqg9Z959Kz+IYDd5p3w==

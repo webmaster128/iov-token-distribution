@@ -1,6 +1,6 @@
+import { Decimal } from "@cosmjs/math";
 import fs from "fs";
 
-import { Decimal } from "./decimal";
 import { Escrow, Genesis, parseIov, Wallet } from "./format";
 import { percentage, relative, supplyInContainerss } from "./math";
 import { printlnStderr, printlnStdout } from "./print";
