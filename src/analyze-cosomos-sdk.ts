@@ -27,7 +27,10 @@ async function main(): Promise<void> {
     sum += BigInt(amount);
   }
 
-  printlnStdout(`Total: ${sum}uiov (${sum / BigInt(1000000)} IOV)`);
+  const inIov = Number(sum) / 1_000_000;
+  const inMillionIov = inIov / 1_000_000;
+
+  printlnStdout(`Total: ${sum}uiov (${inMillionIov.toFixed(1)} million IOV)`);
 }
 
 main();
